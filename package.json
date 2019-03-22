@@ -14,7 +14,10 @@
     "pug": "2.0.0-beta11",
     "winston": "^3.2.1"
   },
-  "engines" : {
-    "node" : ">=9.10.1"
+  "engines": {
+    "node": ">=9.10.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0"
   }
 }
