@@ -4,13 +4,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 
-const indexRouter = require('./server/routes/index');
-const logger = require('./server/middleware/logger');
+const indexRouter = require('./src/server/routes/index');
+const logger = require('./src/server/middleware/logger');
 
 const app = express();
 
 // View Engine setup
-app.set('views', path.join(__dirname, 'server/views'));
+app.set('views', path.join(__dirname, 'src/server/views'));
 app.set('view engine', 'pug');
 
 // MIDDLEWARE BEGIN
@@ -18,7 +18,12 @@ app.set('view engine', 'pug');
 ** https://expressjs.com/en/starter/static-files.html
 ** https://expressjs.com/en/4x/api.html#express.static
 */
-app.use(express.static(path.join(__dirname, 'client')));
+if (process.env.node_env === 'production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+} else {
+  app.use(express.static(path.join(__dirname, 'src/client')));
+}
+
 
 /* Body Parsing Middleware
 ** https://expressjs.com/en/4x/api.html#express.json

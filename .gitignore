@@ -3,4 +3,4 @@ package-lock.json
 # Ignore client-side build output
 build/**
 # Ignore components pug files since this is copied from ./componenents by the build
-server/views/components/**
+src/server/views/components/**

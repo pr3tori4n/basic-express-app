@@ -7,20 +7,19 @@ const clean = function() {
 
 //Copy pug files from components directory to express views directory
 const copyPugViewFiles_fromComponents_toExpressViewsFolder = function() {
-    return gulp.src('./components/**/*.pug')
-        .pipe(gulp.dest('./server/views/components'));
+    return gulp.src('./src/components/**/*.pug')
+        .pipe(gulp.dest('./src/server/views/components'));
 };
 
 const watchFiles = function() {
     //watch for changes in *.pug files under ./components, and copy them over automatically
-    gulp.watch('./components/**/*.pug', { ignoreInitial: false }, copyPugViewFiles_fromComponents_toExpressViewsFolder);
+    gulp.watch('./src/components/**/*.pug', { ignoreInitial: false }, copyPugViewFiles_fromComponents_toExpressViewsFolder);
 };
 
 const log = function(done) {
     console.log('I gulped!');
     done();
 };
-
 
 module.exports.clean = clean;
 module.exports.watch = watchFiles;
