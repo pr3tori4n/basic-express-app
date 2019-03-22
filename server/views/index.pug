@@ -1,4 +1,7 @@
 extends layout
 
+include ./components/foo/foo.pug
+
 block content
   h1= title
+  +foo()
