@@ -18,12 +18,10 @@ app.set('view engine', 'pug');
 ** https://expressjs.com/en/starter/static-files.html
 ** https://expressjs.com/en/4x/api.html#express.static
 */
-if (process.env.node_env === 'production') {
-  app.use(express.static(path.join(__dirname, 'build')));
-} else {
-  app.use(express.static(path.join(__dirname, 'src/client')));
-}
-
+app.use(express.static(path.join(__dirname, 'build')));
+/* TODO: instead of changing the static directory based on NODE_ENV, 
+** add an app.locals variable for conditionally adding .min to the static filename
+*/
 
 /* Body Parsing Middleware
 ** https://expressjs.com/en/4x/api.html#express.json
