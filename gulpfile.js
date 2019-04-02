@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const path = require('path');
+const path = require('path'); //https://nodejs.org/api/path.html
 const del = require('del'); //Cleans out a directory of all folders and files
 //CSS tooling
 const sass = require('gulp-sass'); //gulp wrapper for node-sass to use with gulp streams
@@ -10,6 +10,9 @@ const autoprefixer = require("autoprefixer"); //Automatically adds vendor prefix
 const cleancss = require('postcss-clean'); //Minifies CSS
 const rename = require("gulp-rename"); //for renaming a file in the stream
 
+/* TODO: replace all paths with path.join for Cross-OS compatibility
+** https://nodejs.org/api/path.html#path_path_join_paths
+*/
 const paths = {
     css: {
         src: path.join(__dirname, "src/client/**/*.scss"),
@@ -18,7 +21,7 @@ const paths = {
 };
 
 const clean = function() {
-    return del(['./build/**', '!./build', '!./build/.gitkeep']);
+    return del(['./build/**', '!./build', '!./build/.gitkeep', './src/server/views/components/**']);
 };
 
 //Copy pug files from components directory to express views directory
