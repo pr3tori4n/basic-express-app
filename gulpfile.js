@@ -34,23 +34,24 @@ const watchFiles = function() {
 
 // CSS task
 const css = function() {
-return gulp.src("./src/client/**/*.scss", { sourcemaps: true })
-    .pipe(plumber())
-    .pipe(sass({ outputStyle: "expanded" }))
-    .pipe(gulp.dest("./build/"))
-    .pipe(rename({ suffix: ".min" }))
-    .pipe(postcss([autoprefixer(), cleancss()]))
-    .pipe(gulp.dest("./build/", { sourcemaps: true }))
-    // .pipe(browsersync.stream());
-}
+    return gulp.src("./src/client/**/*.scss", { sourcemaps: true })
+        .pipe(plumber())
+        .pipe(sass({ outputStyle: "expanded" }))
+        .pipe(gulp.dest("./build/"))
+        .pipe(rename({ suffix: ".min" }))
+        .pipe(postcss([autoprefixer(), cleancss()]))
+        .pipe(gulp.dest("./build/", { sourcemaps: true }))
+        // .pipe(browsersync.stream());
+};
 
-const log = function(done) {
-    console.log('I gulped!');
+const js = function(done) {
+    console.log('js');
     done();
 };
 
 module.exports.clean = clean;
-module.exports.watch = watchFiles;
 module.exports.copyViews = copyPugViewFiles_fromComponents_toExpressViewsFolder;
 module.exports.css = css;
-module.exports.default = gulp.series(clean, css, log);
+module.exports.js = js;
+module.exports.default = gulp.series(clean, gulp.parallel(module.exports.copyViews, css, js));
+module.exports.watch = watchFiles;
