@@ -45,8 +45,8 @@ const css = function() {
 };
 
 const js = function(done) {
-    console.log('js');
-    done();
+    return gulp.src("./src/client/**/*.js", { sourcemaps: true })
+        .pipe(gulp.dest("./build/", { sourcemaps: true }));
 };
 
 module.exports.clean = clean;
