@@ -1,1 +1,1 @@
-export default console.log ('foo.js');
+export default () => console.log('foo.js');

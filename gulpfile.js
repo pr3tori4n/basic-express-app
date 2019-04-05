@@ -9,6 +9,7 @@ const postcss = require("gulp-postcss"); //Wrapper for autoprefixer and cleancss
 const autoprefixer = require("autoprefixer"); //Automatically adds vendor prefixes to appropriate css property names
 const cleancss = require('postcss-clean'); //Minifies CSS
 const rename = require("gulp-rename"); //for renaming a file in the stream
+const replace = require('gulp-replace-path'); //for modifying paths in js files so imports work after moving the files using gulp.dest with different folder structure.
 
 /* TODO: replace all paths with path.join for Cross-OS compatibility
 ** https://nodejs.org/api/path.html#path_path_join_paths
@@ -47,10 +48,19 @@ const css = function() {
         // .pipe(browsersync.stream());
 };
 
-const js = function(done) {
+const js_application = function(done) {
+    //TODO: use replace to modify import paths
     return gulp.src("./src/client/**/*.js", { sourcemaps: true })
+        .pipe(replace(/\.\.\/components/, './components'))
         .pipe(gulp.dest("./build/", { sourcemaps: true }));
 };
+
+const js_components = function(done) {
+    return gulp.src("./src/components/**/*.js", { sourcemaps: true })
+        .pipe(gulp.dest("./build/js/components", { sourcemaps: true }));
+};
+
+const js = gulp.parallel(js_application, js_components);
 
 module.exports.clean = clean;
 module.exports.copyViews = copyViews;
