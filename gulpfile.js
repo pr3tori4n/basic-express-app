@@ -35,6 +35,7 @@ const copyViews = function() {
 const watchFiles = function() {
     //watch for changes in *.pug files under ./components, and copy them over automatically
     gulp.watch('./src/components/**/*.pug', { ignoreInitial: false }, copyViews);
+    gulp.watch(['./src/client/**/*.js', './src/components/**/*.js'], { ignoreInitial: false }, js);
 };
 
 // CSS task
@@ -46,21 +47,17 @@ const css = function() {
         .pipe(rename({ suffix: ".min" }))
         .pipe(postcss([autoprefixer(), cleancss()]))
         .pipe(gulp.dest("./build/", { sourcemaps: true }))
-        // .pipe(browsersync.stream());
 };
-
-const js_application = function(done) {
-    //TODO: use replace to modify import paths
+// JS Tasks
+const js_application = function(done) {    
     return gulp.src("./src/client/**/*.js", { sourcemaps: true })
-        .pipe(replace(/\.\.\/components/, './components'))
+        .pipe(replace(/\.\.\/components/, './components')) //Replace components import directory because js_components() makes it a sibling directory
         .pipe(gulp.dest("./build/", { sourcemaps: true }));
 };
-
 const js_components = function(done) {
     return gulp.src("./src/components/**/*.js", { sourcemaps: true })
         .pipe(gulp.dest("./build/js/components", { sourcemaps: true }));
 };
-
 const js = gulp.parallel(js_application, js_components);
 
 module.exports.clean = clean;
