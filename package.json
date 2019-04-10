@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "gulp",
+    "watch": "gulp watch",
     "start": "node start-app.js"
   },
   "license": "MIT",
