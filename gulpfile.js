@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const path = require('path'); //https://nodejs.org/api/path.html
 const del = require('del'); //Cleans out a directory of all folders and files
-//CSS tooling
+//CSS Tooling
 const sass = require('gulp-sass'); //gulp wrapper for node-sass to use with gulp streams
 sass.compiler = require('node-sass'); //Explicitly define the compiler used by gulp-sass instead of relying on default
 const plumber = require('gulp-plumber'); //Prevents crashes from watch if sass compiles fail or other node stream errors
@@ -9,6 +9,7 @@ const postcss = require("gulp-postcss"); //Wrapper for autoprefixer and cleancss
 const autoprefixer = require("autoprefixer"); //Automatically adds vendor prefixes to appropriate css property names
 const cleancss = require('postcss-clean'); //Minifies CSS
 const rename = require("gulp-rename"); //for renaming a file in the stream
+//JS Tooling
 const replace = require('gulp-replace-path'); //for modifying paths in js files so imports work after moving the files using gulp.dest with different folder structure.
 
 /* TODO: replace all paths with path.join for Cross-OS compatibility
