@@ -34,8 +34,8 @@ const copyViews = function() {
 
 //Copy images to the build directory
 const copyImages = function() {
-    return gulp.src('./src/client/images/**/*(.jpg|.png|.gif)')
-        .pipe(gulp.dest('./src/build/images'));
+    return gulp.src('./src/client/images/**/*[.jpg|.png|.gif]')
+        .pipe(gulp.dest('./build/images'));
 };
 
 const watchFiles = function() {
