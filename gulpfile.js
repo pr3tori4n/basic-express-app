@@ -32,10 +32,17 @@ const copyViews = function() {
         .pipe(gulp.dest('./src/server/views/components'));
 };
 
+//Copy images to the build directory
+const copyImages = function() {
+    return gulp.src('./src/client/images/**/*(.jpg|.png|.gif)')
+        .pipe(gulp.dest('./src/build/images'));
+};
+
 const watchFiles = function() {
     //watch for changes in *.pug files under ./components, and copy them over automatically
     gulp.watch('./src/components/**/*.pug', { ignoreInitial: false }, copyViews);
     gulp.watch(['./src/client/**/*.js', './src/components/**/*.js'], { ignoreInitial: false }, js);
+    gulp.watch('./src/client/**/*.scss', css);
 };
 
 // CSS task
@@ -62,7 +69,8 @@ const js = gulp.parallel(js_application, js_components);
 
 module.exports.clean = clean;
 module.exports.copyViews = copyViews;
+module.exports.copyImages = copyImages;
 module.exports.css = css;
 module.exports.js = js;
-module.exports.default = gulp.series(clean, gulp.parallel(copyViews, css, js));
+module.exports.default = gulp.series(clean, gulp.parallel(copyViews, copyImages, css, js));
 module.exports.watch = watchFiles;
