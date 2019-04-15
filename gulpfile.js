@@ -42,8 +42,7 @@ const copyImages = function() {
 
 const startBrowserSync = function(done) {
     browsersync.init({
-        proxy: "http://localhost:8080", // port of node server
-        injectChanges: true
+        proxy: "http://localhost:8080" // domain and port of express server
     });
     done();
 };
@@ -52,6 +51,11 @@ const exitBrowserSync = function(done) {
     browsersync.exit();
     done();
 };
+
+const reloadBrowserSync = function(done) {
+    browsersync.reload();
+    done();
+}
 
 // CSS task
 const css = function() {
@@ -93,5 +97,6 @@ module.exports.css = css;
 module.exports.js = js;
 module.exports.startBrowserSync = startBrowserSync;
 module.exports.exitBrowserSync = exitBrowserSync;
+module.exports.reloadBrowserSync = reloadBrowserSync;
 module.exports.default = gulp.series(clean, gulp.parallel(copyViews, copyImages, css, js));
 module.exports.watch = watchFiles;
