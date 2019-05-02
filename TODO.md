@@ -1,0 +1,4 @@
+- Delete Browserify
+- Setup Babel ES6 => ES5
+- Setup tests
+- Setup hosting with https://www.heroku.com/free
