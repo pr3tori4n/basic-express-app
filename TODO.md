@@ -1,4 +1,7 @@
-- Delete Browserify
-- Setup Babel ES6 => ES5
-- Setup tests
-- Setup hosting with https://www.heroku.com/free
+- [x] Setup Express
+- [x] Setup CSS Pipeline
+- [ ] Setup JS Pipeline
+    - [ ] Setup Babel ES6 => ES5
+- [x] Setup Nodemon
+- [ ] Setup tests using Mocha Chai
+- [ ] Setup hosting with https://www.heroku.com/free or AWS
