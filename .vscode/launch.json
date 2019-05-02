@@ -16,7 +16,20 @@
             "request": "launch",
             "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
             "stopOnEntry": false,
-            "args": [],
+            "args": [""],
+            "cwd": "${workspaceRoot}",
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "console": "internalConsole",
+        },
+        {
+            "name": "Gulp watch Tester",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
+            "stopOnEntry": false,
+            "args": ["watch"],
             "cwd": "${workspaceRoot}",
             "runtimeArgs": [
                 "--nolazy"
