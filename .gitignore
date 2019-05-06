@@ -4,3 +4,4 @@ package-lock.json
 build/**
 # Ignore components pug files since this is copied from ./componenents by the build
 src/server/views/components/**
+node_modules
